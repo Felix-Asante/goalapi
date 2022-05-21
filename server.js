@@ -2,11 +2,13 @@ import dotenv from "dotenv";
 import app from "./utils/expressInstance.utils.js";
 import express from "express";
 import errorHandler from "./middleware/error.middleware.js";
+import connectDB from "./config/db.js";
 
 // * ROUTES
 import indexRoutes from "./routes/index.routes.js";
 
 dotenv.config();
+connectDB();
 
 // *MIDDLEWARE
 app.use(express.json());

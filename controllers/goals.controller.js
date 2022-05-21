@@ -1,10 +1,11 @@
 import asyncHandler from "express-async-handler";
-
+import Goal from "../models/goal.js";
 // @desc GET all goals
 //@route GET /api/goals
 //@access privates
 export const getGoals = asyncHandler(async (req, res) => {
-	res.status(200).json({ message: "all goals" });
+	const goals = await Goal.find();
+	res.status(200).json({ goals });
 });
 
 // @desc create new goal
@@ -15,7 +16,12 @@ export const createNewGoal = async (req, res) => {
 		res.status(400);
 		throw new Error("Please make sure you're sending the correct data");
 	}
-	res.status(200).json({ goals: "All goals" });
+
+	const goal = await Goal.create({
+		goal: req.body.goal,
+		isCompleted: false,
+	});
+	res.status(200).json({ data: goal });
 };
 
 // @desc Update  goal
