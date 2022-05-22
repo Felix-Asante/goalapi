@@ -6,7 +6,7 @@ import connectDB from "./config/db.js";
 
 // * ROUTES
 import indexRoutes from "./routes/index.routes.js";
-
+import userRoutes from "./routes/user.routes.js";
 dotenv.config();
 connectDB();
 
@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 5000;
 
 // * ROUTES MIDDLEWARE
 app.use("/api/goals", indexRoutes);
+app.use("/api/users", userRoutes);
 
 // * LAUNCH SERVER
 app.listen(PORT, () => console.log(`server running on PORT:${PORT}`));
